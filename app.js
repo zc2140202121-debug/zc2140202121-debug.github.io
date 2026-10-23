@@ -52,10 +52,12 @@ function fill(containerId, items, render) {
 function renderProject(index) {
   currentProject = (index + projects.length) % projects.length;
   const project = projects[currentProject];
-  document.getElementById('dialog-counter').textContent = `PROJECT 0${currentProject + 1} / 03`;
+  document.getElementById('dialog-counter').textContent = `PROJECT ${String(currentProject + 1).padStart(2, "0")} / ${String(projects.length).padStart(2, "0")}`;
   document.getElementById('dialog-category').textContent = project.category;
   document.getElementById('dialog-title').textContent = project.title;
   document.getElementById('dialog-summary').textContent = project.summary;
+  document.getElementById('case-role').textContent = project.role || '';
+  projectDialog.dataset.project = project.id;
   const hero = document.getElementById('dialog-image');
   hero.src = project.hero;
   hero.alt = project.alt;
@@ -134,7 +136,7 @@ if ('IntersectionObserver' in window) {
       });
     });
   }, { rootMargin: '-15% 0px -60% 0px', threshold: 0 });
-  document.querySelectorAll('#top, #work, #about, #resources').forEach(section => sectionObserver.observe(section));
+  document.querySelectorAll('#top, #work, #profile, #about, #resources').forEach(section => sectionObserver.observe(section));
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const revealObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -142,7 +144,7 @@ if ('IntersectionObserver' in window) {
         entry.target.classList.add('is-visible'); revealObserver.unobserve(entry.target);
       });
     }, { threshold: 0.06 });
-    document.querySelectorAll('.section-heading, .project-card, .perspective-note').forEach(item => {
+    document.querySelectorAll('.section-heading, .project-card, .method-list article').forEach(item => {
       item.classList.add('reveal'); revealObserver.observe(item);
     });
   }
