@@ -160,3 +160,15 @@ dialog{color:var(--ink);background:var(--paper);border:0;padding:0;max-height:ca
   .dialog-pagination{gap:16px;padding-top:13px}
   .dialog-pagination>button{min-height:48px;padding:10px 0;font-size:13px}
 }
+
+/* 2026 portfolio refinement: stronger editorial rhythm and restrained motion. */
+.hero-index{display:flex;align-items:center;gap:15px;color:var(--muted);font-size:10px;letter-spacing:.15em;margin:34px 0 0}
+.hero-index::before{content:"";width:28px;height:1px;background:var(--accent)}
+.hero-index span{color:var(--accent)}
+.hero-feature .hero-product,.project-image{overflow:hidden}
+.hero-product img,.project-image img{transition:transform .65s cubic-bezier(.22,1,.36,1)}
+@media (hover:hover) and (pointer:fine){.hero-product:hover img,.project-open:hover .project-image img{transform:scale(1.025)}.project-open:hover .round-arrow,.hero-product:hover .round-arrow{transform:translate(2px,-2px)}}
+.project-card .round-arrow,.hero-product .round-arrow{transition:transform .3s ease,background-color .3s ease,color .3s ease}
+.project-open:focus-visible,.hero-product:focus-visible,.filter:focus-visible{outline:2px solid var(--accent);outline-offset:5px}
+@media (max-width:760px){.hero-index{margin-top:24px;font-size:9px}.hero-index::before{width:22px}}
+@media (prefers-reduced-motion:reduce){.hero-product img,.project-image img,.project-card .round-arrow,.hero-product .round-arrow{transition:none!important}.hero-product:hover img,.project-open:hover .project-image img{transform:none!important}}
